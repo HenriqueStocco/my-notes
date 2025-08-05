@@ -1,0 +1,20 @@
+Compilar mostrando todos os erros possiveis para melhorar a escrita do código
+gcc -o <obj_name> -Wall -Werror --pedantic-errors <filename.c>
+
+gcc - chamada do compilador (GNU C Compiler)
+
+-o - nome do binário (objeto/executável) compilado e linkado para execução do programa C
+
+-Wall - Ativa/mostra todas as mensagens de aviso(warnings all) padrão, ajuda a evitar más práticas e erros comuns
+
+-Werror - Transforma todos os avisos (warnings) em erros, impedindo a compilação do código até que todos os erros sejam solucionados.
+
+--pedantic-errors - Impõe estritamente o padrão ISO C: qualquer violação de conformidade com o padrão será um erro, não apenas um aviso.
+
+Powershell
+
+Compilação e execução de programas em C.
+
+Usando o operador lógico E (and) no Powershell
+
+gcc -o a -Wall -Werror --pedantic-errors a.c -and ./a
