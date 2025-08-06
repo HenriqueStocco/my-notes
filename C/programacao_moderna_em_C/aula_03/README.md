@@ -76,3 +76,28 @@ long long i; // mesma coisa do long
 // Esses "limitadores" também possuem o seu valor sem sinal, apenas adicionar o unsigned atrás
 unsigned long long batata;
 ```
+
+## size_t
+
+Este é o tipo exato do retorno do operador `sizeof`. Um tipo sem sinal de 8 bytes ou 64 bits (dependendo da arquitetura).
+
+```c
+#include <stdlib.h>
+
+// ...
+size_t len;
+
+printf("SIZE_T: %zu bytes\n", sizeof len);
+
+// ...
+```
+
+## Modificador `register`
+
+Modificador register faz com que a variável seja alocada em um registrador, que é um espaço pequeno e mais rápido de momória, dentro do processador, onde ele não precisa acessar a memória RAM para salvar, buscar e manipular um dado, o que leva muito tempo.
+
+> Normalmente utilizado em contadores de loops, justamente pela sua velocidade.
+
+```c
+register int i = 10;
+```
