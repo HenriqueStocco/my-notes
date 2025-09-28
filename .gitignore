@@ -1,4 +1,2 @@
-.vscode/**
 *.env
-*.pem
-*.key
+*.o
