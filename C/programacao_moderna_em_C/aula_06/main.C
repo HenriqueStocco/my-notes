@@ -1,9 +1,13 @@
 #include <stdio.h>
 
-int main(void) {
-    const int p = puts("Hello!");
+int main(void)
+{
+    int x, y;
+     
+    x = +10 + +1; // números inteiros positivos
+    y = -10 - -1; // números inteiros negativos
 
-    printf("%d\n", p);
+    printf("X: %d\nY:%d\n", x, y);
 
     return 0;
 }

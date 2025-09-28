@@ -1,0 +1,25 @@
+{
+    // window
+    "window.zoomLevel": 0.3,
+    // extensions - material icon theme
+    "material-icon-theme.activeIconPack": "react",
+    "material-icon-theme.hidesExplorerArrows": true,
+    // explorer
+    "explorer.compactFolders": false,
+    // workbench
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.tree.indent": 20,
+    "workbench.colorTheme": "Default Dark Modern",
+    // editor
+    "editor.fontFamily": "JetBrains Mono, 'JetBrains Mono'",
+    "editor.fontSize": 14,
+    "editor.fontLigatures": true,
+    "editor.renderLineHighlight": "gutter",
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": "explicit",
+    "editor.cursorStyle": "underline",
+    "editor.scrollbar.horizontal": "auto",
+    "editor.scrollbar.vertical": "auto",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+}
