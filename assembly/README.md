@@ -45,4 +45,4 @@ clear && \
     ./<name>
 ```
 
-> Obs: no comando de linkedição com **ld**, a flag -s é responsável por remover qualquer flag adicional de debugging, por exemplo, que o dbg adiciona nos binários.
+> Obs: no comando de linkedição com **ld**, a flag -s é responsável por remover qualquer flag adicional de debugging, por exemplo, que o dbg busca nos binários, que o gcc com a flag -g gera.
