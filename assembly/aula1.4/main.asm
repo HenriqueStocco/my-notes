@@ -5,17 +5,17 @@ section .text
 global  _start
 
 _start:
-    lea esi,       [BUFFER]
-    add esi,       0x9
-    mov byte[esi], LF
+    lea ESI,       [BUFFER]
+    add ESI,       0x9
+    mov BYTE[ESI], LF
 
-    dec esi
-    mov dl,    0x11
-    add dl,    '0'
-    mov [esi], dl
+    dec ESI
+    mov DL,    0x11
+    add DL,    "0"
+    mov [ESI], DL
 
     call returnResult
 
-    mov eax, SYS_EXIT
-    mov ebx, RET_EXIT
+    mov EAX, SYS_EXIT
+    mov EBX, RET_EXIT
     int SYS_CALL
