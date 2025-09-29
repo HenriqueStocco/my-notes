@@ -1,4 +1,4 @@
-section .data
+segment .data
     LF       equ 0xA
     NULL     equ 0x0
     SYS_CALL equ 0x80
@@ -11,19 +11,19 @@ section .data
     STD_OUT  equ 0x1
     RET_EXIT equ 0x0
 
-    BUFFER_LEN equ 0x2
+    BUFFER_LEN equ 0xA
 
 
-section .bss
-    BUFFER resb BUFFER_LEN
+segment .bss
+    BUFFER resb 0xA
 
 
-section .text
+segment .text
 
 returnResult:
-    mov eax, SYS_WRITE
-    mov ebx, STD_OUT
-    mov ecx, BUFFER
-    mov edx, BUFFER_LEN
+    mov EAX, SYS_WRITE
+    mov EBX, STD_OUT
+    mov ECX, BUFFER
+    mov EDX, BUFFER_LEN
     int SYS_CALL
     ret
