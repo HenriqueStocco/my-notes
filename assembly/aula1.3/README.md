@@ -95,3 +95,23 @@ Os são esses:
 ### Jump Incondicional
 
 Este é o *JMP*, é o famoso *GOTO* de linguagens como **C**, ele pulam quando eu definir que deve pular, sem nenhuma condição, ele não depende de nenhuma FLAG do registrador RFLAGS, vai direto para a *label* que eu definir.
+
+## Curiosidade
+
+O nome da seção de constantes que terão valores atribuidos no futuro, a `.bss`, significa: **Block Starting Symbol**
+
+## "Tipo" de variáveis não inicializadas
+
+As variáveis **não** inicializadas, são aquelas que terão o seu valor atribuidos ao decorrer do programa, abaixo uma tabela de cada um com seu tipo *(segundo o livro do Fernando Anselmo)*:
+
+| Sigla | Tipo        | Significado          |
+| ----- | ----------- | -------------------- |
+| resb  | byte        | variavel de 8 bits   |
+| resw  | word        | variavel de 16 bits  |
+| resd  | double      | variavel de 32 bits  |
+| resq  | quad        | variavel de 64 bits  |
+| resdq | double quad | variavel de 128 bits |
+
+## Conversão relativa
+
+No código, fazemos uma conversão relativa, no x e no y, antes de mandar para os registradores eax e ebx, usando DWORD, pois não é possível mover o conteúdo de um DD diretamente para estes registradores.

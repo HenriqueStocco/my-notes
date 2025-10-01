@@ -17,15 +17,15 @@ segment .data
 
 section .data
 
-    x dd 50 ; double word = 4 bytes
-    y dd 50 ; double word = 4 bytes
+    x dd 10 ; double word = 4 bytes
+    y dd 20 ; double word = 4 bytes
 
     msg1     db  "X maior que Y", LF, NULL
     msg1_len equ $ - msg1
     
     msg2     db  "Y maior que X", LF, NULL
     msg2_len equ $ - msg2
-
+    
 
 section .text
 
@@ -34,8 +34,8 @@ global  _start
 
 _start:
 
-    mov EAX, DWORD[x]
-    mov EBX, DWORD[y]
+    mov EAX, DWORD[x] ; conversão relativa
+    mov EBX, DWORD[y] ; conversão relativa
     ; if - utiliza o operador CMP
     cmp EAX, EBX      ; compara o que estiver em EAX (x = 50) com o que estiver em EBX (y = 10)
     jge greater       ; se x maior que y, executa o que estiver na label greater
