@@ -1,0 +1,35 @@
+segment .data
+  
+  ; ASCII
+  LF equ 0xA 
+  NULL equ 0xD
+  
+  ; System
+  SYS_CALL equ 0x80
+  SYS_EXIT equ 0x1
+  SYS_READ equ 0x3
+  SYS_WRITE equ 0x4
+  
+  ; FILE DESCRIPTOR
+  STD_IN equ 0x0
+  STD_OUT equ 0x1
+  RET_EXIT equ 0x0
+  
+  ; VARIABLE
+  BUFFER_LEN equ 0xA
+
+
+segment .bss
+ 
+  BUFFER resb 0xA
+
+
+segment .text
+
+returnResult:
+  mov EAX, SYS_WRITE
+  mov EBX, STD_OUT
+  mov ECX, BUFFER
+  mov EDX, BUFFER_LEN
+  int SYS_CALL
+  ret

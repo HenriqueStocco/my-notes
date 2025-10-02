@@ -1,9 +1,4 @@
-<<<<<<< HEAD:assembly/aula1.4a/lib.inc
-section .data
-
-=======
 segment .data
->>>>>>> 06bf423947b09e8b386c8afae13c279178160198:assembly/aula1.4/lib.inc
     LF       equ 0xA
     NULL     equ 0x0
     SYS_CALL equ 0x80
@@ -19,14 +14,8 @@ segment .data
     BUFFER_LEN equ 0xA
 
 
-<<<<<<< HEAD:assembly/aula1.4a/lib.inc
-section .bss
-    
-    BUFFER resb BUFFER_LEN
-=======
 segment .bss
     BUFFER resb 0xA
->>>>>>> 06bf423947b09e8b386c8afae13c279178160198:assembly/aula1.4/lib.inc
 
 
 segment .text

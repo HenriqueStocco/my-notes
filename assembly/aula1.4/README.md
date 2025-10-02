@@ -1,1 +1,0 @@
-# Aula 1.4 - Biblioteca externa & Função

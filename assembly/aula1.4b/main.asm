@@ -5,6 +5,7 @@ section .text
 global  _start
 
 _start:
+    
     lea ESI,       [BUFFER]
     add ESI,       0x9
     mov BYTE[ESI], LF
