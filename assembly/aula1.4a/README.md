@@ -1,4 +1,4 @@
-# Aula 1.4 - Biblioteca externa & Função
+# Aula 1.4 - Biblioteca externa & Marcador conversor
 
 ## include
 
@@ -30,3 +30,21 @@ mov ESI, BUFFER ; acessa a memória e pega o endereço de memória da variavel B
 ### add
 
 Essa instrução serve para **somar** dois valores, mas no caso, está sendo utilizado para somar o endereço do registrador ESI com 9, fazendo o ponteiro andar 9 casas para a frente.
+
+### dec
+
+Essa instrução serve para **decrementar** um valor ou endereço de memória. O código decrementa o que está no registrador ESI, ou seja, decrementa o endereço de BUFFER, permitindo andar uma casa para trás e adicionar um valor, exemplo:
+
+```assembly
+; BUFFER (posição em bytes) = _________\n
+
+; Atual = _________\n
+                    ^
+                    |
+
+dec ESI ; Decrementa o endereço de memória em 1 (BUFFER--)
+
+; Posterior = __________\n
+                       ^
+                       |
+```

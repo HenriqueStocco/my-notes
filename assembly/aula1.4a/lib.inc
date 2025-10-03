@@ -1,4 +1,5 @@
-segment .data
+section .data
+
     LF       equ 0xA
     NULL     equ 0x0
     SYS_CALL equ 0x80
@@ -14,11 +15,12 @@ segment .data
     BUFFER_LEN equ 0xA
 
 
-segment .bss
-    BUFFER resb 0xA
+section .bss
+    
+    BUFFER resb BUFFER_LEN
 
 
-segment .text
+section .text
 
 returnResult:
     mov EAX, SYS_WRITE

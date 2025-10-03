@@ -1,6 +1,7 @@
 NAME = main
 
-run: ${NAME}.o
+start: ${NAME}.o
+	clear
 	ld -s -o ${NAME} ${NAME}.o
 	rm -rf *.o
 	clear
