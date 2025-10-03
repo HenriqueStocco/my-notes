@@ -46,7 +46,7 @@ int_to_string:
     mov byte[ESI], 0xA
     mov EBX,       0xA
 .next_digit:
-    xor  EBX,   EBX
+    xor  EDX,   EDX
     div  EBX
     add  DL,    "0"
     dec  ESI
