@@ -4,7 +4,7 @@ segment .data
 
     SYS_EXIT  equ 0x1
     SYS_READ  equ 0x3
-    SYS_WRITE equ 0x04
+    SYS_WRITE equ 0x4
     SYS_CALL  equ 0x80
     
     STD_IN   equ 0x0
@@ -20,9 +20,9 @@ segment .bss
 
 segment .text
     returnResult:
-        mov EAX, SYS_WRITE
-        mov EBX, STD_OUT
-        mov ECX, BUFFER
-        mov EDX, BUFFER_LEN
-        int SYS_CALL
+        mov EAX, SYS_WRITE  ; RAX - n chamada de sistema - regis. acumulador
+        mov EBX, STD_OUT    ; devia ser o RDI - file descriptor - regis. de destino
+        mov ECX, BUFFER     ; devia ser o RSI - aponta para o 1fh endereço da string - regis. de origem-
+        mov EDX, BUFFER_LEN ; RDX - recebe a quantidade de bytes - regis. de dados
+        int SYS_CALL        ; syscall
         ret

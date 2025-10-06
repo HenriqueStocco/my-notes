@@ -1,7 +1,7 @@
 %include "lib.inc"
 
 section .data
-    v1 dw "105", LF, NULL
+    v1 dw "104", LF, NULL
 
 
 section .text
@@ -46,7 +46,7 @@ int_to_string:
     mov byte[ESI], 0xA
     mov EBX,       0xA
 .next_digit:
-    xor  EBX,   EBX
+    xor  EDX,   EDX
     div  EBX
     add  DL,    "0"
     dec  ESI
