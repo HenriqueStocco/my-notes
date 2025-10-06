@@ -1,6 +1,6 @@
 segment .data
     LF   equ 0xA
-    NULL equ 0xD
+    NULL equ 0x0D
 
     SYS_EXIT  equ 0x1
     SYS_READ  equ 0x3
