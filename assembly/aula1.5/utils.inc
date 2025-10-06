@@ -1,6 +1,6 @@
 segment .data
     LF   equ 0xA ; Line feed
-    NULL equ 0xD ; Null
+    NULL equ 0x0 ; Null
 
     SYS_READ  equ 0x3  ; Chamada OS de leitura
     SYS_WRITE equ 0x4  ; Chamada OS de escrita

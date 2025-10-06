@@ -11,18 +11,18 @@ section .data
     opcao_4        db LF, "4. Dividir", NULL
     mensagem_opcao db LF, "Deseja realizar? ", NULL
     mensagem_erro  db LF, "Valor de Opção Inválido", NULL
-    processo_1     db LF, "Processo de Adicionar", NULL
+    processo_1     db LF, "Processo de Adicionar", LF, NULL
     processo_2     db LF, "Processo de Subtrair", NULL
     processo_3     db LF, "Processo de Multiplicar", NULL
     processo_4     db LF, "Processo de Dividir", NULL
     mensagem_fim   db LF, "Terminei", LF, NULL
+    mensagem_resultado db LF, "Resultado: ", NULL
     
 
 section .bss
-    opcao     resb 1
-    numero_1  resb 0x3
-    numero_2  resb 0x3
-    resultado resb 0x4
+    opcao    resb 1
+    numero_1 resb 0x3
+    numero_2 resb 0x3
 
 
 section .text
@@ -101,21 +101,25 @@ adicionar:
     call mostrar_saida
 
     lea  esi, [numero_1]
-    mov  ecx, 0x3
+    mov  ecx, 0x2
     call converter_para_inteiro
     mov  edi, eax
 
     lea  esi, [numero_2]
     mov  ecx, 0x3
     call converter_para_inteiro
-    mov  ebp, eax
+    mov ebp, eax
 
-    add edi,         ebp
-    mov [resultado], edi
-    
+    add  edi, ebp
+    mov  eax, edi
     call converter_para_string
+    xor edi, edi
+    mov edi, eax
 
-    mov  ecx, [resultado]
+    mov ecx, mensagem_resultado
+    call mostrar_saida
+
+    mov  ecx, edi
     call mostrar_saida
 
     jmp saida
@@ -153,26 +157,25 @@ converter_para_inteiro:
         ret
 
 converter_para_string:
-    lea esi,       [resultado]
     add esi,       0x9
     mov byte[esi], 0xA
     mov ebx,       0xA
     .proximo_digito:
-        xor  edx,         edx
+        xor  edx,   edx
         div  ebx
-        add  dl,          "0"
+        add  dl,    "0"
         dec  esi
-        mov  [esi],       dl
-        test eax,         eax
+        mov  [esi], dl
+        test eax,   eax
         jnz  .proximo_digito
-        mov  [resultado], esi
+        mov  eax,   esi
         ret
 
 ; TERMINO DO PROGRAMA
 saida:
     mov  ecx, mensagem_fim
     call mostrar_saida
-    mov eax, SYS_EXIT,
+    mov  eax, SYS_EXIT
     xor  ebx, ebx
     int  SYS_CALL
 
