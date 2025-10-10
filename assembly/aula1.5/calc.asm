@@ -2,20 +2,20 @@
 
 
 section .data
-    titulo         db LF, "+-------------+", LF, "| Calculadora |", LF, "+-------------+", LF, NULL
-    obter_valor_1  db LF, "Valor 1: ", NULL
-    obter_valor_2  db LF, "Valor 2: ", NULL
-    opcao_1        db LF, "1. Adicionar", NULL
-    opcao_2        db LF, "2. Subtrair", NULL
-    opcao_3        db LF, "3. Multiplicar", NULL
-    opcao_4        db LF, "4. Dividir", NULL
-    mensagem_opcao db LF, "Deseja realizar? ", NULL
-    mensagem_erro  db LF, "Valor de Opção Inválido", NULL
-    processo_1     db LF, "Processo de Adicionar", LF, NULL
-    processo_2     db LF, "Processo de Subtrair", NULL
-    processo_3     db LF, "Processo de Multiplicar", NULL
-    processo_4     db LF, "Processo de Dividir", NULL
-    mensagem_fim   db LF, "Terminei", LF, NULL
+    titulo             db LF, "+-------------+", LF, "| Calculadora |", LF, "+-------------+", LF, NULL
+    obter_valor_1      db LF, "Valor 1: ", NULL
+    obter_valor_2      db LF, "Valor 2: ", NULL
+    opcao_1            db LF, "1. Adicionar", NULL
+    opcao_2            db LF, "2. Subtrair", NULL
+    opcao_3            db LF, "3. Multiplicar", NULL
+    opcao_4            db LF, "4. Dividir", NULL
+    mensagem_opcao     db LF, "Deseja realizar? ", NULL
+    mensagem_erro      db LF, "Valor de Opção Inválido", NULL
+    processo_1         db LF, "Processo de Adicionar", LF, NULL
+    processo_2         db LF, "Processo de Subtrair", NULL
+    processo_3         db LF, "Processo de Multiplicar", NULL
+    processo_4         db LF, "Processo de Dividir", NULL
+    mensagem_fim       db LF, "Terminei", LF, NULL
     mensagem_resultado db LF, "Resultado: ", NULL
     
 
@@ -23,6 +23,7 @@ section .bss
     opcao    resb 1
     numero_1 resb 0x3
     numero_2 resb 0x3
+    resultado resb 0xA
 
 
 section .text
@@ -101,25 +102,29 @@ adicionar:
     call mostrar_saida
 
     lea  esi, [numero_1]
-    mov  ecx, 0x2
+    mov  ecx, 0x4
     call converter_para_inteiro
     mov  edi, eax
 
+    xor esi, esi
+
     lea  esi, [numero_2]
-    mov  ecx, 0x3
+    mov  ecx, 0x4
     call converter_para_inteiro
-    mov ebp, eax
 
-    add  edi, ebp
-    mov  eax, edi
-    call converter_para_string
-    xor edi, edi
-    mov edi, eax
+    xor esi, esi
 
-    mov ecx, mensagem_resultado
+    add eax, edi
+
+    mov [resultado], eax
+
+    ; lea  esi, [resultado]
+    ; call converter_para_string
+
+    mov  ecx, mensagem_resultado
     call mostrar_saida
 
-    mov  ecx, edi
+    mov  ecx, resultado
     call mostrar_saida
 
     jmp saida

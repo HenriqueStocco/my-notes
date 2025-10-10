@@ -2,7 +2,7 @@
 
 ## Explicação em detalhes
 
-### Conversão de string para integer *(by GPT)*
+### Conversão de string para inteiro *(by GPT)*
 
 Código base:
 
@@ -42,3 +42,45 @@ convert_to_integer:
 |    1     |    "1"    |        1        |        0        |         0 * 10 + 1 = 1         |
 |    2     |    "2"    |        2        |        1        |         1 * 10 + 2 = 2         |
 |    3     |    "3"    |        3        |        12       |         12 * 10 + 3 = 123      |
+
+Passo a passo:
+
+```s
+; x = '12'
+
+lea esi, [x] ; esi = '12'
+
+mov ecx, 0x2 ; ecx = 2
+
+xor ebx, ebx ; ebx = 0
+
+movzx eax, byte [esi] ; eax = 0x00000031 -> 1 em hexa ASCII
+
+inc esi ; esi = '2'
+
+sub al, '0' ; al = ((0x31 - 0x30) = 1)
+
+imul ebx, 0xA ; ebx = ((ebx(0) * 0xA(10)) = 0)
+
+add ebx, eax ; ebx = ((ebx(0) + eax(1)) = 1)
+
+; loop
+; ecx = ecx - 1 (contador autodecrementa no loop, até que seja 0)
+
+movzx eax, byte[esi] ; eax = '2' -> 0x00000032 hex ASCII
+
+inc esi ; esi = ''
+
+sub al, '0' ; al = ((al(0x32) - '0'(0x30)) = 2)
+
+imul ebx, 0xA ; ebx = ((ebx(1) * 0xA(10)) = 10)
+
+add ebx, eax ; ebx = ((ebx(10) + eax(2)) = 12)
+
+; Fim do loop por que decrementa o ecx e cai para zero e ele finaliza
+
+mov eax, ebx ; eax = ebx(12)
+```
+
+### Conversão de inteiro para string
+
