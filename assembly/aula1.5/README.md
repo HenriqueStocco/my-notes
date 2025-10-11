@@ -82,5 +82,21 @@ add ebx, eax ; ebx = ((ebx(10) + eax(2)) = 12)
 mov eax, ebx ; eax = ebx(12)
 ```
 
-### Conversão de inteiro para string
+Conversao foi extendida com comparações de caracteres não numericos, pelo Claude.ia. As comparações:
 
+```s
+; compara AL com o caractere ASCII 0 (0x30) que é um número
+cmp al, "0"
+; vai para .fim_conversao se AL for menor que o caractere 0x30, indicando que não é um número
+jb .fim_conversao
+
+; compara AL com o caractere ASCII 9 (0x39), que é o ultimo numero da tabela
+cmp al, "9"
+; vai pra .fim_conversao se AL for maior que o caractere 0x39, indicando que não é um número
+ja .fim_conversao
+```
+
+Os jumps `JB` e `JA`, são os caras que verificam a condição de valores sem sinal, por que o caractere ASCII não tem sinal.
+
+### Conversão de inteiro para string
+Aula

@@ -20,10 +20,10 @@ section .data
     
 
 section .bss
-    opcao    resb 1
-    numero_1 resb 0x3
-    numero_2 resb 0x3
-    resultado resb 0x1
+    opcao     resb 0x1
+    numero_1  resb 0x4
+    numero_2  resb 0x4
+    resultado resb 0x4
 
 
 section .text
@@ -70,7 +70,7 @@ _start:
     mov  eax, SYS_READ
     mov  ebx, STD_IN
     mov  ecx, numero_1
-    mov  edx, 0x3
+    mov  edx, 0x4
     int  SYS_CALL
 
     mov  ecx, obter_valor_2
@@ -78,7 +78,7 @@ _start:
     mov  eax, SYS_READ
     mov  ebx, STD_IN
     mov  ecx, numero_2
-    mov  edx, 0x3
+    mov  edx, 0x4
     int  SYS_CALL
 
     ; CONVERTE A OPÇÃO EM NUMERO
@@ -97,91 +97,129 @@ _start:
     
 
 ; MARCADORES DE OPERACAO
-adicionar:
-    mov  ecx, processo_1
-    call mostrar_saida
+    adicionar:
+        mov  ecx, processo_1
+        call mostrar_saida
 
-    lea  esi, [numero_1]
-    mov  ecx, 0x4
-    call converter_para_inteiro
-    mov  edi, eax
+        lea  esi, [numero_1]
+        mov  ecx, 0x4
+        call converter_para_inteiro
+        mov  edi, eax
 
-    lea  esi, [numero_2]
-    mov  ecx, 0x4
-    call converter_para_inteiro
+        lea  esi, [numero_2]
+        mov  ecx, 0x4
+        call converter_para_inteiro
 
-    add eax, edi
+        add eax, edi
 
-    lea  esi, [resultado]
-    call converter_para_string
-    mov ebp, eax
+        lea  esi, [resultado]
+        call converter_para_string
+        mov  ebp, eax
 
-    mov  ecx, mensagem_resultado
-    call mostrar_saida
+        mov  ecx, mensagem_resultado
+        call mostrar_saida
 
-    mov  ecx, ebp
-    call mostrar_saida
+        mov  ecx, ebp
+        call mostrar_saida
 
-    jmp saida
+        jmp saida
 
-subtrair:
-    mov  ecx, processo_2
-    call mostrar_saida
-    jmp  saida
+    subtrair:
+        mov  ecx, processo_2
+        call mostrar_saida
 
-multiplicar:
-    mov  ecx, processo_3
-    call mostrar_saida
-    jmp  saida
+        lea  esi, [numero_1]
+        mov  ecx, 0x1
+        call converter_para_inteiro
+        mov  edi, eax
 
-dividir: 
-    mov  ecx, processo_4
-    call mostrar_saida
-    jmp  saida
+        lea  esi, [numero_2]
+        mov  ecx, 0x1
+        call converter_para_inteiro
+        
+        sub edi, eax
+        xor eax, eax
+        mov eax, edi
 
-mostrar_erro:
-    mov  ecx, mensagem_erro
-    call mostrar_saida
-    jmp  saida
+        lea  esi, [resultado]
+        call converter_para_string
+        mov  ebp, eax
 
-converter_para_inteiro:
-    xor ebx, ebx ; ebx é o acumulador, então temos que zera-lo
-    .proximo_digito:
-        movzx eax, byte[esi]  ; move o caracter atual para eax com extensão de zeros
-        cmp al, "0"
-        jb .fim_conversao
-        cmp al, "9"
-        ja .fim_conversao
+        mov  ecx, mensagem_resultado
+        call mostrar_saida
 
-        inc   esi             ; vai para o prox caracter da string
-        sub   al,  "0"        ; convert o digito ASCII para o valor numerico
-        imul  ebx, 0xA        ; multiplica o valor atual acumulado por 10
-        add   ebx, eax        ; add o valor do digito atual no total acumualado
-        loop  .proximo_digito ; decrementa ecx and faz um loop enquanto ecx é diferente de zero
-    .fim_conversao:
-        mov   eax, ebx        ; move o valor inteiro final para eax para retornar 
-        ret
+        mov  ecx, ebp
+        call mostrar_saida
 
-converter_para_string:
-    add esi,       0x9
-    mov byte[esi], 0xA
-    mov ebx,       0xA
-    .proximo_digito:
-        xor  edx,   edx
-        div  ebx
-        add  dl,    "0"
-        dec  esi
-        mov  [esi], dl
-        test eax,   eax
-        jnz  .proximo_digito
-        mov  eax,   esi
-        ret
+        jmp saida
+
+    multiplicar:
+        mov  ecx, processo_3
+        call mostrar_saida
+
+        lea  esi, [numero_1]
+        mov  ecx, 0x4
+        call converter_para_inteiro
+        mov  edi, eax
+
+        lea  esi, [numero_2]
+        mov  ecx, 0x4
+        call converter_para_inteiro
+        mov  ebp, eax
+        mov  eax, edi
+        
+        mul ebp
+        xor edi, edi
+
+        lea  esi, [resultado]
+        call converter_para_string
+        mov  edi, eax
+
+        mov  ecx, mensagem_resultado
+        call mostrar_saida
+
+        mov  ecx, edi
+        call mostrar_saida
+
+        jmp saida
+
+    dividir: 
+        mov  ecx, processo_4
+        call mostrar_saida
+
+        lea  esi, [numero_2]
+        mov  ecx, 0x4
+        call converter_para_inteiro
+        mov  edi, eax
+
+        lea  esi, [numero_1]
+        mov  ecx, 0x4
+        call converter_para_inteiro
+
+        div edi
+        xor edi, edi
+
+        lea  esi, [resultado]
+        call converter_para_string
+        mov  edi, eax
+
+        mov  ecx, mensagem_resultado
+        call mostrar_saida
+
+        mov  ecx, edi
+        call mostrar_saida
+
+        jmp saida
+
+    mostrar_erro:
+        mov  ecx, mensagem_erro
+        call mostrar_saida
+        jmp  saida
 
 ; TERMINO DO PROGRAMA
-saida:
-    mov  ecx, mensagem_fim
-    call mostrar_saida
-    mov  eax, SYS_EXIT
-    xor  ebx, ebx
-    int  SYS_CALL
-
+    saida:
+        mov  ecx, mensagem_fim
+        call mostrar_saida
+        mov  eax, SYS_EXIT
+        xor  ebx, ebx
+        int  SYS_CALL
