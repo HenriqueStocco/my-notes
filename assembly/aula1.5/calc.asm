@@ -187,26 +187,25 @@ _start:
         mov  ecx, processo_4
         call mostrar_saida
 
-        lea  esi, [numero_2]
+        lea  esi, [numero_1]
         mov  ecx, 0x4
         call converter_para_inteiro
         mov  edi, eax
 
-        lea  esi, [numero_1]
+        lea  esi, [numero_2]
         mov  ecx, 0x4
         call converter_para_inteiro
 
         div edi
-        xor edi, edi
 
         lea  esi, [resultado]
         call converter_para_string
-        mov  edi, eax
+        mov  ebp, eax
 
         mov  ecx, mensagem_resultado
         call mostrar_saida
 
-        mov  ecx, edi
+        mov  ecx, ebp
         call mostrar_saida
 
         jmp saida
