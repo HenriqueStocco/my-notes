@@ -1,0 +1,22 @@
+{
+    "explorer.compactFolders": false,
+    "window.zoomLevel": 0.4,
+    "editor.renderLineHighlight": "gutter",
+    "chat.fontSize": 14,
+    "editor.fontLigatures": true,
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorStyle": "underline",
+    "editor.cursorSmoothCaretAnimation": "explicit",
+    "editor.lineHeight": 1.5,
+    "editor.fontFamily": "JetBrains Mono",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Default Dark Modern",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "[go]": {
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "golang.go",
+        "editor.tabSize": 4,
+    }
+}
