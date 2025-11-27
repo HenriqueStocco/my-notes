@@ -38,6 +38,10 @@ func main() {
 	// Um interface vazia pode conter valores de qualquer tipo
 	// São utilizadas por códigos que lidam com valores de tipo desconhecido,
 	// Um exemplo, o fmt.Print aceita qualquer número de arqgumentos do tipo interface {}
+	// Simplificaram o use interface{} vazia por any, que é a mesma
+	// Tanto que o LSP golps reclama se ver interface{}
 	var y interface{}
+	var z any
 	describe(y)
+	describe(z)
 }
