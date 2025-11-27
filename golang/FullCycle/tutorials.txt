@@ -1,0 +1,19 @@
+Criar um modulo em Go é parecido com iniciar um projeto em Node.js com npm
+exemplo: npm init -y -> go mod init <project-name>
+
+Quando importamos alguma lib/package precisamos instalar no projeto.
+Ao instalar, será gerado um arquivo go.sum que contém os hashes criptografados
+das das dependencias diretas e indiretas do modulo, quando instalado ele verifica estes hashes para averiguar se bate com os hashes do modulo principal.
+
+Para instalar as dependencias: go mod tidy
+
+Para executar um arquivo: go run <file_name>.go
+
+No Go é necessario delarar a variável para entaão atribuir um valor a ela e
+depois utiliza-la.
+
+O Go também tem a forma de criar variaveis diretamente, deixando o compilardor tentar descobrir seu tipo, isto se da por: nome =: valor
+
+O Go reclama se uma variavel não foi usada e pode ate remover ela do codigo
+
+O := siginifica declaracao e atribuicao de uma nova variavel, mas se quisermos reatribuir um valor para esta variavel, apenas utilizamos o =.

@@ -1,0 +1,23 @@
+Import pacotes externos
+
+$ go get github.com/projeto/pacote
+
+Gerar o binário (executável) do programa go
+
+$ go build arquivo.go
+
+Ver variaves de ambiente do Go
+
+$ go env | go env GOOS
+
+GOOS é a variavel de ambiente que diz qual o OS que estamos utilizando,
+onde o Go foi instalado.
+
+Mudar a variável de ambiente do go, para que o build seja gerado
+para outro sistema operacional
+
+$ GOOS=linux go build arquivo.go
+
+E para instalar o binário executavel
+
+$ go install
